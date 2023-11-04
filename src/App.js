@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+
+export default function App() {
+  const [code, setCode] = useState(function Test () { return "hello"});
+  let cnt="Write a simple react program to perform keyword search  and highlight the keyword in the given content"
+  const [search,setSearch]=useState("");
+  const [searched,setSearched]=useState("");
+  
+  const searchHandler =()=>{
+    let ans=cnt.split(" ");
+     let a = ans.map((word)=>{
+      if(word === search)
+      return word
+    })
+    setSearched(a);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <span>{cnt}</span><br/>
+     <input type='text' onChange={(e)=>{setSearch(e.target.value)}} ></input>
+     <button onClick={searchHandler}>Button</button><br/>
+     <span>{searched}</span>
     </div>
   );
 }
-
-export default App;
